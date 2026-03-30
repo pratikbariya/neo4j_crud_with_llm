@@ -110,9 +110,6 @@ def validate(data):
     }
 
 
-# ==============================
-# 🔹 GRAPH REPOSITORY
-# ==============================
 def create_requirement(user_id, session_id, data):
     query = """
     MERGE (u:User {id: $user_id})
@@ -149,7 +146,7 @@ def create_requirement(user_id, session_id, data):
     })
 
 
-# ✅ FIXED: Graph-friendly query
+# FIXED: Graph-friendly query
 def get_requirement_graph(session_id):
     query = """
     MATCH (s:Session {id: $session_id})-[:HAS_CONTEXT]->(g:Goal)
@@ -164,7 +161,7 @@ def get_requirement_graph(session_id):
     return db.run_query(query, {"session_id": session_id})
 
 
-# ✅ Structured JSON (for API)
+# Structured JSON (for API)
 def get_requirement_json(session_id):
     query = """
     MATCH (s:Session {id: $session_id})-[:HAS_CONTEXT]->(g:Goal)
